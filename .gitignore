@@ -364,3 +364,4 @@ poetry.toml
 /.idea/modules.xml
 /.idea/inspectionProfiles/profiles_settings.xml
 /.idea/trip-analyzer.iml
+/.idea/vcs.xml
