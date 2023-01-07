@@ -1,7 +1,4 @@
-import pandas
-from panas_evaluation import PanasEvaluation
-
-DELIMETER = ";"
+from TripData import TripData
 
 trip_id = "57"
 filename = trip_id + "_Ajdovščina 26. 12_26-12-2022_19-19"
@@ -11,38 +8,12 @@ filename = trip_id + "_Ajdovščina 26. 12_26-12-2022_19-19"
 # sum sprememb
 # stevilo spike-ov
 # segmentacija kjer so spike-ti
-
-
-def read_data():
-    pre_specific = pandas.read_csv(f"./data/{filename}/PRE_SPECIFIC.csv", delimiter=DELIMETER)
-    pre_demographic = pandas.read_csv(f"./data/{filename}/PRE_DEMOGRAPHIC.csv", delimiter=DELIMETER)
-    pre_panas = pandas.read_csv(f"./data/{filename}/PRE_TRIP_PANAS.csv", delimiter=DELIMETER)
-    post_panas = pandas.read_csv(f"./data/{filename}/POST_TRIP_PANAS.csv", delimiter=DELIMETER)
-    post_specific = pandas.read_csv(f"./data/{filename}/POST_SPECIFIC.csv", delimiter=DELIMETER)
-    calibration_data = pandas.read_csv(f"./data/{filename}/trip_{trip_id}_calibration_data.csv", delimiter=DELIMETER)
-    ecg_calibration_data = pandas.read_csv(f"./data/{filename}/trip_{trip_id}_ecg_calibration_data.csv", delimiter=DELIMETER)
-    data = pandas.read_csv(f"./data/{filename}/trip_{trip_id}_data.csv", delimiter=DELIMETER)
-    ecg_data = pandas.read_csv(f"./data/{filename}/trip_{trip_id}_ecg_data.csv", delimiter=DELIMETER)
-
-    pre_panas = PanasEvaluation(pre_panas.values)
-    post_panas = PanasEvaluation(post_panas.values)
-    print(pre_panas.pa, pre_panas.na)
-    print(post_panas.pa, post_panas.na)
-
-
+# Calculate parameters from ECG -> RR interval, QT, PR, etc. https://litfl.com/qt-interval-ecg-library/ https://github.com/tejasa97/ECG-Signal-Processing
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    pa_items = ["interested", "excited", "strong", "determined", "attentive", "alert", "enthusiastic", "inspired",
-                "active",
-                "proud"]
-    string = "1. Zainteresirano (Interested)"
-
-    if any(s in string.lower() for s in pa_items):
-        print("The string contains at least one of the strings in the array")
-    else:
-        print("The string does not contain any of the strings in the array")
-    read_data()
+    data = TripData(trip_id, filename)
+    ecg = data.get_calibration_ecg_data_evaluated()
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
 
