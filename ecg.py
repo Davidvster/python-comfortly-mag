@@ -12,7 +12,7 @@ class EcgAnalyzer:
     def __init__(self, data):
         self.data = data
 
-    def process(self, show_plot=False):
+    def process(self, show_plot=True):
         filtered = hp.filter_signal(self.data, cutoff=0.05, sample_rate=ECG_SAMPLE_RATE, filtertype='notch')
 
         # resample the data. Usually 2, 4, or 6 times is enough depending on original sampling rate
@@ -22,8 +22,6 @@ class EcgAnalyzer:
         measured_data, measures = hp.process(hp.scale_data(resampled_data), ECG_SAMPLE_RATE * RESAMPLE_SCALE)
 
         if show_plot:
-            # visualise in plot of custom size
-            plt.figure()
             hp.plotter(measured_data, measures)
             plt.show()
             # display computed measures
