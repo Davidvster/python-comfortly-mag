@@ -1,8 +1,8 @@
 from TripData import TripData
 from ecg import EcgAnalyzer
 
-trip_id = "57"
-filename = trip_id + "_Ajdovščina 26. 12_26-12-2022_19-19"
+trip_id = "32"
+filename = trip_id + "_mesto_16-05-2024_20-41"
 
 # izracunaj PANAS score pre and post
 # average values
@@ -14,8 +14,9 @@ filename = trip_id + "_Ajdovščina 26. 12_26-12-2022_19-19"
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     data = TripData(trip_id, filename)
-    ecg = data.get_calibration_ecg_data_evaluated()
-    linearAcceleration = data.evaluate_linear_acceleration().process(True)
+    # ecg = data.get_calibration_ecg_data_evaluated()
+    # linearAcceleration = data.evaluate_linear_acceleration().process(True)
+    data.plot()
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
 

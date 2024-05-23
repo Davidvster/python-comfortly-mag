@@ -2,6 +2,7 @@ import pandas
 from panas_evaluation import PanasEvaluation
 from ecg import EcgAnalyzer
 from linear_acceleration import LinearAccelerationAnalyzer
+from data_plotter import DataPlotter
 
 DELIMETER = ";"
 
@@ -13,9 +14,9 @@ class TripData:
         self.pre_specific = pandas.read_csv(f"./data/{filename}/PRE_SPECIFIC.csv", delimiter=DELIMETER)
         self.pre_demographic = pandas.read_csv(f"./data/{filename}/PRE_DEMOGRAPHIC.csv", delimiter=DELIMETER)
         self.pre_panas_data = pandas.read_csv(f"./data/{filename}/PRE_TRIP_PANAS.csv", delimiter=DELIMETER)
-        # self.pre_mssq_1 = pandas.read_csv(f"./data/{filename}/PRE_MSSQ_1.csv", delimiter=DELIMETER)
-        # self.pre_mssq_2 = pandas.read_csv(f"./data/{filename}/PRE_MSSQ_2.csv", delimiter=DELIMETER)
-        # self.pre_bsss = pandas.read_csv(f"./data/{filename}/PRE_BSSS.csv", delimiter=DELIMETER)
+        self.pre_mssq_1 = pandas.read_csv(f"./data/{filename}/PRE_MSSQ_1.csv", delimiter=DELIMETER)
+        self.pre_mssq_2 = pandas.read_csv(f"./data/{filename}/PRE_MSSQ_2.csv", delimiter=DELIMETER)
+        self.pre_bsss = pandas.read_csv(f"./data/{filename}/PRE_BSSS.csv", delimiter=DELIMETER)
         self.post_panas_data = pandas.read_csv(f"./data/{filename}/POST_TRIP_PANAS.csv", delimiter=DELIMETER)
         self.post_specific = pandas.read_csv(f"./data/{filename}/POST_SPECIFIC.csv", delimiter=DELIMETER)
         self.calibration_data = pandas.read_csv(f"./data/{filename}/trip_{trip_id}_calibration_data.csv",
@@ -32,6 +33,12 @@ class TripData:
     def evaluate_linear_acceleration(self):
         linear_acc = LinearAccelerationAnalyzer(self.calibration_data, self.data)
         return linear_acc
+
+    def plot(self):
+        # analyzer = EcgAnalyzer(self.ecg_calibration_data.ecg_mv)
+        # analyzer.process()
+        data_plotter = DataPlotter(self.calibration_data, self.data)
+        data_plotter.plot()
 
     def get_pre_panas_evaluated(self):
         return self.pre_panas_evaluated
