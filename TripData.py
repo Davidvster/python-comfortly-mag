@@ -30,6 +30,15 @@ class TripData:
         self.pre_panas_evaluated = PanasEvaluation(self.pre_panas_data.values)
         self.post_panas_evaluated = PanasEvaluation(self.post_panas_data.values)
 
+    def get_trip_id(self):
+        return self.trip_id
+
+    def get_data(self):
+        return self.data
+
+    def get_comfort_score(self):
+        return self.post_specific["answer"][0]
+
     def evaluate_linear_acceleration(self):
         linear_acc = LinearAccelerationAnalyzer(self.calibration_data, self.data)
         return linear_acc
