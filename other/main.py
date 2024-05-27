@@ -1,4 +1,4 @@
-from TripData import TripData
+from trip_data import TripData
 from ecg import EcgAnalyzer
 
 trip_id = "32"

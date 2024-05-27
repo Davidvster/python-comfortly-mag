@@ -3,9 +3,9 @@
 import heartpy as hp
 import matplotlib.pyplot as plt
 from scipy.signal import resample
-from constants import ECG_SAMPLE_RATE
 
 RESAMPLE_SCALE = 6
+ECG_SAMPLE_RATE = 140
 
 
 class EcgAnalyzer:

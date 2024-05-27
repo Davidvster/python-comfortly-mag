@@ -3,35 +3,42 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="/data/14_Test delo_19-04-2024_08-53/PRE_SPECIFIC.csv">
+        <entry key="/data/0_Blaž-Ajdovscina__16-05-2024_20-05/POST_SPECIFIC.csv">
           <value>
             <Attribute>
               <option name="separator" value=";" />
             </Attribute>
           </value>
         </entry>
-        <entry key="/data/18_Test doma 3_21-04-2024_01-03/trip_18_ecg_data.csv">
+        <entry key="/data/0_Blaž-Ajdovscina__16-05-2024_20-05/trip_0_calibration_data.csv">
           <value>
             <Attribute>
               <option name="separator" value=";" />
             </Attribute>
           </value>
         </entry>
-        <entry key="/data/19_Test aldi _21-04-2024_12-47/trip_19_ecg_data.csv">
+        <entry key="/data/1_Blaž-parkirisce_16-05-2024_20-34/POST_SPECIFIC.csv">
           <value>
             <Attribute>
               <option name="separator" value=";" />
             </Attribute>
           </value>
         </entry>
-        <entry key="/data/20_Aldi domov_21-04-2024_13-24/trip_20_ecg_data.csv">
+        <entry key="/data/2_Blaž-mesto_16-05-2024_20-41/POST_SPECIFIC.csv">
           <value>
             <Attribute>
               <option name="separator" value=";" />
             </Attribute>
           </value>
         </entry>
-        <entry key="/data/57_Ajdovščina 26. 12_26-12-2022_19-19/trip_57_data.csv">
+        <entry key="/data/3_Blaž-avtocesta_16-05-2024_20-52/POST_SPECIFIC.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/4_Blaž-regionalna_16-05-2024_21-04/POST_SPECIFIC.csv">
           <value>
             <Attribute>
               <option name="separator" value=";" />
