@@ -81,7 +81,7 @@ class TripData:
         return self.data_with_calibration
 
     def get_comfort_score(self):
-        return self.post_specific["answer"][0]
+        return float(self.post_specific["answer"][0])
 
     def evaluate_linear_acceleration(self):
         linear_acc = LinearAccelerationAnalyzer(self.calibration_data, self.data)
