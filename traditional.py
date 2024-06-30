@@ -128,7 +128,7 @@ normalized_test_data = scaler.fit_transform(flat_test_data_df)
 
 
 def evaluate_model(model, X, y):
-    cv_scores = cross_val_score(model, X, y, cv=5, scoring='r2')
+    cv_scores = cross_val_score(model, X, y, cv=3, scoring='r2')
     print(f"Cross-validated R^2 scores for {model.__class__.__name__}: {cv_scores}")
     print(f"Mean R^2 score for {model.__class__.__name__}: {np.mean(cv_scores)}")
     model.fit(X, y)
@@ -143,7 +143,7 @@ def evaluate_model(model, X, y):
 
 models = {
     # "Linear Regression": LinearRegression(),
-    "Decision Tree": DecisionTreeRegressor(),
+    # "Decision Tree": DecisionTreeRegressor(),
     "Random Forest": RandomForestRegressor(),
     "Support Vector Machine": SVR()
 }
