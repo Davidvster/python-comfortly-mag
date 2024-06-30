@@ -2,9 +2,13 @@ import pandas as pd
 import numpy as np
 import os
 from trip_data import TripData
-from sklearn.model_selection import cross_val_score
-from sklearn.linear_model import LinearRegression
+from scipy.stats import skew, kurtosis
 from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LinearRegression
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.svm import SVR
+from sklearn.model_selection import cross_val_score
 
 selected_features = [
     'heart_rate_bpm',
@@ -27,7 +31,6 @@ subjects = [
 ]
 
 data_path = "data/"
-model_file_name = 'models/tcn_model_{}.pth'.format("".join(subjects))
 
 
 def read_data(subjects, directory):
@@ -124,17 +127,11 @@ flat_test_data_df = flat_test_data_df.apply(pd.to_numeric, errors='coerce')
 normalized_test_data = scaler.fit_transform(flat_test_data_df)
 
 
-def train_and_test():
-    # Initialize the model
-    model = LinearRegression()
-    # Perform cross-validation
-    cv_scores = cross_val_score(model, normalized_data, comfort_scores, cv=4, scoring='r2')
-
-    print("Cross-validated R^2 scores:", cv_scores)
-    print("Mean R^2 score:", np.mean(cv_scores))
-
-    # Fit the model on the entire dataset
-    model.fit(normalized_data, comfort_scores)
+def evaluate_model(model, X, y):
+    cv_scores = cross_val_score(model, X, y, cv=5, scoring='r2')
+    print(f"Cross-validated R^2 scores for {model.__class__.__name__}: {cv_scores}")
+    print(f"Mean R^2 score for {model.__class__.__name__}: {np.mean(cv_scores)}")
+    model.fit(X, y)
 
     # Predict
     index = 0
@@ -144,5 +141,15 @@ def train_and_test():
         index += 1
 
 
+models = {
+    # "Linear Regression": LinearRegression(),
+    "Decision Tree": DecisionTreeRegressor(),
+    "Random Forest": RandomForestRegressor(),
+    "Support Vector Machine": SVR()
+}
+
 if __name__ == '__main__':
-    train_and_test()
+    # Evaluate each model
+    for name, model in models.items():
+        print(f"Evaluating {name}...")
+        evaluate_model(model, normalized_data, comfort_scores)
